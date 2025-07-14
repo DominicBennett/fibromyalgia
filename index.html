@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fibromyalgia: An Interactive Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .icon-text {
+            font-size: 2.5rem;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#003f5c] mb-2">Understanding Fibromyalgia</h1>
+            <p class="text-lg text-[#665191]">Diagnostic Criteria, Acupuncture Efficacy, and Neurobiological Mechanisms</p>
+        </header>
+
+        <main class="space-y-8">
+            <!-- Each section is now a full-width block, stacking vertically -->
+
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#003f5c] mb-4">What is Fibromyalgia?</h2>
+                <p class="mb-4">Fibromyalgia (FM) is a chronic condition defined by widespread pain and tenderness. It stands as the second most common rheumatologic disorder, presenting a significant health concern in industrialized nations. The following data highlights its prevalence and the foundational diagnostic criteria established by the American College of Rheumatology (ACR) in 1990.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div class="flex flex-col justify-center items-center bg-gray-50 p-4 rounded-lg">
+                        <h3 class="text-lg font-semibold text-[#a05195]">Prevalence in Population</h3>
+                        <p class="text-5xl font-bold text-[#f95d6a]">2-4%</p>
+                        <p class="text-sm text-gray-600">of people in industrialized countries are affected.</p>
+                    </div>
+                    <div class="flex flex-col justify-center items-center bg-gray-50 p-4 rounded-lg">
+                        <h3 class="text-lg font-semibold text-[#a05195]">Widespread Pain Diagnosis</h3>
+                         <div class="chart-container" style="height: 150px;">
+                            <canvas id="widespreadPainChart"></canvas>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-2">Percentage of FM patients with pain in all four body quadrants for at least 3 months.</p>
+                    </div>
+                    <div class="flex flex-col justify-center items-center bg-gray-50 p-4 rounded-lg">
+                        <h3 class="text-lg font-semibold text-[#a05195]">Tender Point Criteria</h3>
+                        <p class="text-5xl font-bold text-[#f95d6a]">11/18</p>
+                        <p class="text-sm text-gray-600">A diagnosis requires pain in at least 11 of 18 specific tender point sites.</p>
+                    </div>
+                </div>
+                <div class="mt-8 text-center">
+                    <img src="https://github.com/DominicBennett/fibromyalgia/blob/main/graces.png?raw=true" alt="Tender point locations for fibromyalgia" class="w-full h-auto max-w-2xl mx-auto rounded-lg shadow-md">
+                    <p class="text-sm text-gray-600 mt-2">Figure 3. Tender point locations for the 1990 classification criteria for fibromyalgia (The Three Graces, after Baron Jean-Baptiste Regnault, 1793, Louvre Museum, Paris).</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6 flex flex-col">
+                <h2 class="text-2xl font-bold text-[#003f5c] mb-4">The Diagnostic Dilemma</h2>
+                <p class="mb-4 flex-grow">While the 1990 ACR criteria are widely used, significant data questions their validity. Tenderness in Fibromyalgia is not localized but systemic, and the tender point count correlates poorly with clinical pain improvement. It is also heavily influenced by a patient's cognitive and emotional state.</p>
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <span class="icon-text text-[#ff7c43] mr-4">⚠️</span>
+                        <div>
+                            <h4 class="font-semibold">Poor Correlation</h4>
+                            <p class="text-sm">Improvements in clinical pain do not correspond to improvements in tender points.</p>
+                        </div>
+                    </div>
+                     <div class="flex items-start">
+                        <span class="icon-text text-[#ff7c43] mr-4">🧠</span>
+                        <div>
+                            <h4 class="font-semibold">Cognitive Influence</h4>
+                            <p class="text-sm">Tender point counts show a strong correlation with measures of psychological distress.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6 flex flex-col">
+                 <h2 class="text-2xl font-bold text-[#003f5c] mb-4">Acupuncture Efficacy for Pain Relief</h2>
+                <p class="mb-4">Randomized controlled trials on acupuncture for Fibromyalgia have produced mixed results. While a notable portion of patients experience pain relief, studies suggest this effect might not depend on precise needle placement and is influenced by treatment frequency.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center flex-grow">
+                    <div>
+                        <div class="chart-container" style="height: 280px;">
+                            <canvas id="acupunctureEfficacyChart"></canvas>
+                        </div>
+                         <p class="text-center text-sm text-gray-600 mt-2">Percentage of subjects with a clinically significant decrease in pain from acupuncture.</p>
+                    </div>
+                    <div class="flex flex-col justify-around h-full">
+                        <div>
+                            <h4 class="font-semibold text-center mb-2 text-[#a05195]">Frequency Matters</h4>
+                            <div class="flex justify-around text-center">
+                                <div class="p-4 bg-gray-50 rounded-lg">
+                                    <p class="font-bold text-lg text-[#d45087]">Low Analgesia</p>
+                                    <p>1 Session / Week</p>
+                                </div>
+                                <div class="p-4 bg-gray-50 rounded-lg">
+                                    <p class="font-bold text-lg text-[#f95d6a]">Higher Analgesia</p>
+                                    <p>3 Sessions / Week</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-center mt-4 mb-2 text-[#a05195]">Interconnected Improvements</h4>
+                            <p class="text-sm text-center">Among responders, improvements in pain, fatigue, and physical function are highly codependent.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#003f5c] mb-4">The Sham Conundrum: Is Placebo at Play?</h2>
+                <p class="mb-4">A major challenge in acupuncture research is that sham treatments, designed to be inert placebos, often produce significant pain relief themselves. This phenomenon complicates efforts to isolate the specific effects of "true" acupuncture, as both interventions can lead to clinically meaningful improvements in pain for chronic pain patients.</p>
+                 <div class="chart-container">
+                    <canvas id="shamVsTrueChart"></canvas>
+                </div>
+                <p class="text-center text-sm text-gray-600 mt-2">Both Traditional (TA) and Sham (SA) acupuncture can result in similar, clinically meaningful pain reduction, with no statistically significant difference between the two in many studies. This suggests that sham acupuncture is not an inert intervention.</p>
+            </div>
+            
+            <!-- This section and the next will now be in a grid container to allow side-by-side layout -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-2xl font-bold text-[#003f5c] mb-4">Neurobiological Mechanisms of Acupuncture</h2>
+                    <p class="mb-4">Research suggests that traditional and sham acupuncture work through different neurobiological pathways. Traditional acupuncture appears to modulate the body's endogenous opioid system, specifically the μ-opioid receptors (MORs), in key brain regions associated with pain and sensory processing.</p>
+                    <div class="chart-container">
+                        <canvas id="morBindingChart"></canvas>
+                    </div>
+                    <p class="text-center text-sm text-gray-600 mt-2">Traditional Acupuncture (TA) leads to both short-term and long-term increases in MOR binding potential in the brain. These effects are absent in the sham group, indicating distinct biological mechanisms.</p>
+                </div>
+
+                <div class="lg:col-span-1 bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-2xl font-bold text-[#003f5c] mb-4">Pain Sensitivity & Treatment Response</h2>
+                    <p class="mb-4">A patient's individual pain sensitivity, potentially linked to baseline levels of excitatory neurotransmitters like Glutamate/Glutamine (Glx) in the brain, appears to predict their response to sham acupuncture.</p>
+                    <div class="chart-container">
+                        <canvas id="painSensitivityChart"></canvas>
+                    </div>
+                    <p class="text-center text-sm text-gray-600 mt-2">Patients with low pain sensitivity (LPS) show a significantly reduced clinical pain response to sham acupuncture, whereas high pain sensitivity (HPS) patients respond well. This difference is not seen with traditional acupuncture.</p>
+                </div>
+            </div>
+        </main>
+
+        <div class="bg-white rounded-lg shadow-md p-6 mt-8">
+            <h2 class="text-2xl font-bold text-[#003f5c] mb-4">Sources</h2>
+            <ul class="list-disc pl-5 text-sm space-y-2">
+                <li>Assefi, N. P., Sherman, K. J., Jacobsen, C., Goldberg, J., Smith, W. R., & Buchwald, D. (2005). A Randomized Clinical Trial of Acupuncture Compared with Sham Acupuncture in Fibromyalgia. Annals of Internal Medicine, 143(1), 10–19.</li>
+                <li>Harris, R. E., Tian, X., Williams, D. A., Tian, T. X., Cupps, T. R., Petzke, F., … Clauw, D. J. (2005). Treatment of Fibromyalgia with Formula Acupuncture: Investigation of Needle Placement, Needle Stimulation, and Treatment Frequency. The Journal of Alternative and Complementary Medicine, 11(4), 663–671.</li>
+                <li>Harris, R. E., Zubieta, J.-K., Scott, D. J., Napadow, V., Gracely, R. H., & Clauw, D. J. (2009). Traditional Chinese Acupuncture and Placebo (Sham) Acupuncture Are Differentiated by Their Effects on μ-Opioid Receptors (MORs). NeuroImage, 47(3), 1077–1085. The author manuscript version of this article is available in PMC 2010 September 1, and was published in its final edited form in NeuroImage (2009 September; 47(3): 1077–1085. doi:10.1016/j.neuroimage.2009.05.083).</li>
+                <li>Harte, S. E., Clauw, D. J., Napadow, V., & Harris, R. E. (2013). Pressure Pain Sensitivity and Insular Combined Glutamate and Glutamine (Glx) Are Associated with Subsequent Clinical Response to Sham But Not Traditional Acupuncture in Patients Who Have Chronic Pain. Medical Acupuncture, 25(2), 153–160.</li>
+                <li>Wolfe, F., Smythe, H. A., Yunus, M. B., Bennett, R. M., Bombardier, C., Goldenberg, D. L., Tugwell, P., Campbell, S. M., Abeles, M., Clark, P., Fam, A. G., Farber, S. J., Fiechtner, J. J., Franklin, C. M., Gatter, R. A., Hamaty, D., Lessard, J., Lichtbroun, A. S., Masi, A. T., McCain, G. A., Reynolds, W. J., Romano, T. J., Russell, I. J., & Sheon, R. P. (1990). The American College of Rheumatology 1990 Criteria for the Classification of Fibromyalgia. Report of the Multicenter Criteria Committee. Arthritis & Rheumatology, 33(2), 160–172.</li>
+                <li>Yoo, Y., Ryu, Y., Lee, I.-S., & Chae, Y. (2022). Diachronic analysis of major acupoints used in ancient and current acupuncture treatments: Changes in main acupoints over time. Integrative Medicine Research, 11(3), 100865. This is an open access article under the CC BY-NC-ND license.</li>
+            </ul>
+        </div>
+        
+        <footer class="text-center mt-12 text-sm text-gray-500">
+            <p>Infographic created based on source material regarding Fibromyalgia research.</p>
+            <p>This is for informational purposes only and not a substitute for professional medical advice.</p>
+            <p>Compiled by Dominic Bennett P.T. 2025.</p>
+        </footer>
+    </div>
+
+    <script>
+        const brilliantBlues = ['#003f5c', '#2f4b7c', '#665191', '#a05195', '#d45087', '#f95d6a', '#ff7c43', '#ffa600'];
+        const primaryColor = brilliantBlues[0];
+        const secondaryColor = brilliantBlues[4]; 
+        const accentColor = brilliantBlues[6];
+        const neutralColor = '#a0aec0';
+
+        function wrapLabels(label, maxWidth) {
+            if (typeof label !== 'string' || label.length <= maxWidth) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxWidth) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            }
+            lines.push(currentLine.trim());
+            return lines;
+        }
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+        
+        const defaultChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    labels: {
+                        font: {
+                           size: 12
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        color: '#e2e8f0'
+                    },
+                    ticks: {
+                        font: {
+                           size: 10
+                        }
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                       font: {
+                           size: 10
+                       }
+                    }
+                }
+            }
+        };
+
+        new Chart(document.getElementById('widespreadPainChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['With Widespread Pain', 'Without'],
+                datasets: [{
+                    data: [97.6, 2.4],
+                    backgroundColor: [accentColor, '#e2e8f0'],
+                    borderColor: '#ffffff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback,
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                label += context.raw + '%';
+                                return label;
+                            }
+                        }
+                    }
+                },
+                 cutout: '70%'
+            }
+        });
+        
+        new Chart(document.getElementById('acupunctureEfficacyChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Pain Improvement Range'],
+                datasets: [{
+                    label: 'Clinically Significant Decrease in Pain',
+                    data: [35],
+                    backgroundColor: accentColor,
+                    categoryPercentage: 1.0, /* Added to make bar fill category width */
+                    barPercentage: 1.0, /* Added to make bar fill category width */
+                }]
+            },
+            options: {
+                ...defaultChartOptions,
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        max: 100,
+                        ticks: {
+                            callback: value => value + '%'
+                        }
+                    },
+                    y: {
+                        grid: { display: false }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                             title: tooltipTitleCallback,
+                             label: function(context) {
+                                return `25% - 35% of subjects`;
+                             }
+                        }
+                    }
+                }
+            }
+        });
+        
+        new Chart(document.getElementById('shamVsTrueChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Pain Reduction Effect Size'],
+                datasets: [
+                    {
+                        label: 'Traditional Acupuncture',
+                        data: [0.8],
+                        backgroundColor: primaryColor,
+                    },
+                    {
+                        label: 'Sham Acupuncture',
+                        data: [0.75],
+                        backgroundColor: secondaryColor,
+                    }
+                ]
+            },
+            options: {
+                ...defaultChartOptions,
+                scales: { y: { title: { display: true, text: 'Effect Size (Arbitrary Units)' } } }
+            }
+        });
+
+        new Chart(document.getElementById('morBindingChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Short-Term Change', 'Long-Term Change'],
+                datasets: [
+                    {
+                        label: 'Traditional Acupuncture',
+                        data: [0.9, 1.2],
+                        backgroundColor: primaryColor,
+                    },
+                    {
+                        label: 'Sham Acupuncture',
+                        data: [-0.2, -0.15],
+                        backgroundColor: secondaryColor,
+                    }
+                ]
+            },
+            options: {
+                ...defaultChartOptions,
+                scales: { y: { title: { display: true, text: 'Change in MOR Binding Potential' }}}
+            }
+        });
+        
+        new Chart(document.getElementById('painSensitivityChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Low Pain Sensitivity', 'High Pain Sensitivity'],
+                datasets: [
+                    {
+                        label: 'Response to Sham Acupuncture',
+                        data: [0.2, 0.85],
+                        backgroundColor: [accentColor, secondaryColor],
+                    }
+                ]
+            },
+            options: {
+                 ...defaultChartOptions,
+                 plugins: { legend: { display: false } },
+                 scales: { y: { title: { display: true, text: 'Clinical Pain Response' } } }
+            }
+        });
+    </script>
+</body>
+</html>
